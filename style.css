@@ -1,0 +1,248 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: radial-gradient(#9D5900, #3D2200);
+}
+html{
+    min-height: 100vh;
+    cursor: url('cursor/Ghost.cur'), auto;
+}
+
+
+
+.game-container{
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    grid-gap: 10px;
+    margin: 50px;
+    justify-content: center;
+    perspective: 500px;
+}
+
+h1 {
+    color: blue;
+    margin: 10px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.container {
+    height: 200px;
+    position: relative;
+    border: 3px solid green;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#player_name {
+    display: inline-block;
+    margin: 10px 2%;
+}
+
+#header {
+    background-color: #DDF;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 10px;   
+}
+
+
+#first_player {
+    background-color: #0FF;
+    width: 200px;
+    height: 500px;
+    margin-inline-start: auto;
+    margin-right: 20px;
+}
+
+#second_player {
+    background-color: rgb(228, 164, 27);
+    width: 200px;
+    height: 500px;
+    margin-inline-end: auto;
+    margin-left: 20px;
+}
+
+#yese {
+    display: flex;
+}
+
+h2 {
+    color: red;
+    border: solid 2px blue;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.coin {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    margin: 50px auto;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.coin img {
+    width: 100px;
+}
+
+.heads,
+.tails {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+}
+
+.tails {
+    transform: rotateX(180deg);
+}
+
+@keyframes spin-tails {
+    0% {
+        transform: rotateX(0);
+    }
+
+    100% {
+        transform: rotateX(1980deg);
+    }
+}
+
+@keyframes spin-heads {
+    0% {
+        transform: rotateX(0);
+    }
+
+    100% {
+        transform: rotateX(2160deg);
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    width: 120px;
+    padding: 10px 0;
+    border: 2.5px solid #424ae0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#flip-button {
+    background-color: #424ae0;
+    color: white;
+}
+
+#flip-button:disabled {
+    background-color: #e1e0ee;
+    border-color: #e1e0ee;
+    color: #101020;
+}
+
+.txt{
+    font-weight: bold;
+    font-size: 40px;
+    color: blue;
+}
+
+.card{
+    position: relative;
+    height: 240px;
+    width: 140px;
+}
+
+.card:hover{
+    cursor: url('cursor/GhostHover.cur'), auto;
+}
+
+.card.visible .card-back{
+    transform: rotateY(-180deg);
+}
+
+.card.visible .card-front{
+    transform: rotateY(0);
+}
+
+.card.matched .card-value{
+    animation: dance 1s linear infinite 500ms; 
+}
+
+@keyframes dance {
+    0%,100% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(-30deg);
+    }
+
+    75% {
+        transform: rotate(30deg);
+    }
+}
+
+.card-face{
+    position: absolute;
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    border-width: 1px;
+    border-style: solid;
+    transition: transform 500ms ease-in-out;
+}
+
+.card-back{
+    background-color:black;
+    border-color: #FF6D00;
+
+}
+
+.card-front{
+    border-color: #333;
+    transform: rotateY(180deg);
+}
+
+.card-value{
+    transition: transform 100ms ease-in-out;
+    transform: scale(.9);
+    
+}
+
+.card-front:hover .card-value{
+    transform: scale(1);
+}
+
+.default{
+    align-self: flex-start;
+    transform: translateY(-10px);
+    transition: transform 100ms ease-in-out;
+}
+
+.card-back:hover .default{
+    transform: translateY(0);
+}
+
+
