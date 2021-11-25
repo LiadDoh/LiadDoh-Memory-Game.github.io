@@ -60,12 +60,14 @@ class Game {
             this.busy = false;
         }, 500);
         this.hideCards();
+
     }
 
     hideCards() {
         this.cardsArray.forEach(card => {
             card.classList.remove('visible');
             card.classList.remove('matched');
+            card.style.border = "none";
         });
     }
     flipCard(card) {
@@ -94,22 +96,29 @@ class Game {
         this.matchedCards.push(card2);
         card1.classList.add('matched');
         card2.classList.add('matched');
-        this.audioController.match();
-        if (this.firstPlayer) {
-            this.player1Score++;
-            document.getElementById("score1").innerHTML = "Score:" + this.player1Score;
-            if (this.matchedCards.length === this.cardsArray.length) {
-                this.audioController.victory();
-                this.winner();
+        setTimeout(ev => {
+            this.audioController.match();
+            if (this.firstPlayer) {
+                card1.style.border = "5px solid cyan";
+                card2.style.border = "5px solid cyan";
+                this.player1Score++;
+                document.getElementById("score1").innerHTML = "Score:" + this.player1Score;
+                if (this.matchedCards.length === this.cardsArray.length) {
+                    this.audioController.victory();
+                    this.winner();
+                }
+            } else {
+                card1.style.border = "5px solid yellow";
+                card2.style.border = "5px solid yellow";
+                this.player2Score++;
+                document.getElementById("score2").innerHTML = "Score:" + this.player2Score;
+                if (this.matchedCards.length === this.cardsArray.length) {
+                    this.audioController.victory();
+                    this.winner();
+                }
             }
-        } else {
-            this.player2Score++;
-            document.getElementById("score2").innerHTML = "Score:" + this.player2Score;
-            if (this.matchedCards.length === this.cardsArray.length) {
-                this.audioController.victory();
-                this.winner();
-            }
-        }
+        }, 400);
+
     }
 
     winner() {
@@ -159,3 +168,36 @@ class Game {
     }
 
 }
+
+
+// Load Details
+var url_string = window.location.href;
+var url = new URL(url_string);
+var player1 = url.searchParams.get("player1");
+var player2 = url.searchParams.get("player2");
+const players = {
+    player1: {
+        name: player1,
+        score: 0,
+        gamesWon: 0
+    },
+    player2: {
+        name: player2,
+        score: 0,
+        gamesWon: 0
+    },
+
+}
+players.player1.name = player1;
+players.player2.name = player2;
+
+function getDetails() {
+    document.getElementById("player1").innerHTML = players.player1.name;
+    document.getElementById("player2").innerHTML = players.player2.name;
+    document.getElementById("score1").innerHTML = "Score:" + players.player1.score;
+    document.getElementById("score2").innerHTML = "Score:" + players.player2.score;
+    document.getElementById("gamesWon1").innerHTML = "Games Won:" + players.player1.gamesWon;
+    document.getElementById("gamesWon2").innerHTML = "Games Won:" + players.player2.gamesWon;
+}
+
+window.onload = getDetails();
