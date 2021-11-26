@@ -63,6 +63,8 @@ h1 {
     height: 500px;
     margin-inline-start: auto;
     margin-right: 20px;
+    margin-top: 20px;
+    border: 3px solid darkgreen;
 }
 
 #second_player {
@@ -71,6 +73,8 @@ h1 {
     height: 500px;
     margin-inline-end: auto;
     margin-left: 20px;
+    margin-top: 20px;
+    border: 3px solid darkgreen;
 }
 
 #yese {
@@ -80,9 +84,9 @@ h1 {
 h2 {
     color: red;
     border: solid 2px blue;
-    margin-top: 10px;
-    margin-bottom: 10px;
     text-align: center;
+    margin: 10px;
+    margin-top: 30px;
 }
 
 .coin {
@@ -170,10 +174,18 @@ h2 {
 }
 
 .card.visible .card-back {
-    transform: rotateX(-180deg);
+    transform: rotateY(-180deg);
 }
 
 .card.visible .card-front {
+    transform: rotateY(0);
+}
+
+.card.visible2 .card-back {
+    transform: rotateX(-180deg);
+}
+
+.card.visible2 .card-front {
     transform: rotateX(0);
 }
 
@@ -235,5 +247,6 @@ h2 {
 }
 
 .card-back:hover .default {
-    transform: translateY(0);
+    /* transform: translateY(0); */
+    transform: scale(1);
 }

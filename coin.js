@@ -6,7 +6,7 @@ class Coin {
         this.txt = document.querySelector('.txt');
     }
 
-    flipCoin(game,cards) {
+    flipCoin(game, cards) {
         let i = Math.floor(Math.random() * 2);
         this.coinImg.style.animation = 'none';
 
@@ -32,13 +32,14 @@ class Coin {
             cards.forEach(card => card.addEventListener('click', () => {
                 game.flipCard(card);
             }));
-            
+
+            document.body.style.backgroundImage = "url('images/game_background.jpg')";
+
         }, 3000);
     }
 }
 
-function createBoard(cards) 
-{
+function createBoard(cards) {
     let gameContainer = document.getElementById("yese").getElementsByClassName('game-container')[0];
 
     for (let i = 0; i < cards.length; i++) {
@@ -70,12 +71,12 @@ function createBoard(cards)
 
 function ready() {
     let coin = new Coin();
-    cardsArray = [0,1,2,3,4,5,6,7];
+    cardsArray = [0, 1, 2, 3, 4, 5, 6, 7];
     createBoard(cardsArray);
     let cards = Array.from(document.getElementsByClassName('card'));
     let game = new Game(cards);
     coin.flipBtn.addEventListener("click", () => {
-        coin.flipCoin(game,cards);
+        coin.flipCoin(game, cards);
     }, 3000);
 }
 
