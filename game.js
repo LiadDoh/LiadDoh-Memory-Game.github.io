@@ -53,6 +53,7 @@ class Game {
         this.cardToCheck = null;
         this.matchedCards = [];
         this.busy = true;
+        this.coin.flipBtn.style.display = "none";
 
         setTimeout(() => {
             this.audioController.startMusic();
@@ -128,15 +129,19 @@ class Game {
     winner() {
         if (this.player1Score > this.player2Score) {
             this.coin.txt.innerHTML = document.getElementById("player1").innerHTML + " Won! to start a new game flip the coin again";
+            this.coin.txt.style.color = "cyan";
             this.player1Wins++;
             document.getElementById("gamesWon1").innerHTML = "Games Won:" + this.player1Wins;
         } else if (this.player2Score > this.player1Score) {
             this.coin.txt.innerHTML = document.getElementById("player2").innerHTML + " Won! to start a new game flip the coin again";
+            this.coin.txt.style.color = "yellow";
             this.player2Wins++;
             document.getElementById("gamesWon2").innerHTML = "Games Won:" + this.player2Wins;
         } else {
             this.coin.txt.innerHTML = "It's a tie! to start a new game flip the coin again";
+            this.coin.txt.style.color = "blue";
         }
+        this.coin.flipBtn.style.display = "block";
         this.coin.flipBtn.disabled = false;
         this.coin.coinImg.style.opacity = 1;
     }
@@ -151,8 +156,11 @@ class Game {
             this.firstPlayer = !this.firstPlayer;
             if (this.firstPlayer) {
                 this.coin.txt.innerHTML = document.getElementById("player1").innerHTML + "'s turn";
+                this.coin.txt.style.color = "cyan";
             } else {
                 this.coin.txt.innerHTML = document.getElementById("player2").innerHTML + "'s turn";
+                this.coin.txt.style.color = "yellow";
+                this.coin.h1.right = "0";
             }
         }, 1000);
     }

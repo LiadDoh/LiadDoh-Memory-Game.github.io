@@ -22,10 +22,13 @@ class Coin {
         }
         //make image and button disappear
         setTimeout(() => {
-            if (i)
-                this.txt.innerHTML = document.getElementById("player1").innerHTML + " turn";
-            else
-                this.txt.innerHTML = document.getElementById("player2").innerHTML + " turn";
+            if (i) {
+                this.txt.innerHTML = document.getElementById("player1").innerHTML + "'s turn";
+                this.txt.style.color = "cyan";
+            } else {
+                this.txt.innerHTML = document.getElementById("player2").innerHTML + "'s turn";
+                this.txt.style.color = "yellow";
+            }
             this.coinImg.style.opacity = 0;
             this.flipBtn.disabled = true;
             game.startGame(i);
