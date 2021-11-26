@@ -4,7 +4,8 @@
 
 body {
     margin: 0;
-    background-color: radial-gradient(#9D5900, #3D2200);
+    /* background-color: radial-gradient(#9D5900, #3D2200); */
+    background-color: lightgreen;
 }
 
 html {
@@ -29,9 +30,15 @@ h1 {
 }
 
 .container {
-    height: 200px;
+    height: 400px;
     position: relative;
-    border: 3px solid green;
+    border: 5px solid green;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: lightsteelblue;
 }
 
 .center {
@@ -42,6 +49,7 @@ h1 {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    display: inline-block;
 }
 
 #player_name {
@@ -65,6 +73,7 @@ h1 {
     margin-right: 20px;
     margin-top: 20px;
     border: 3px solid darkgreen;
+    transition: border 2s;
 }
 
 #second_player {
@@ -75,6 +84,7 @@ h1 {
     margin-left: 20px;
     margin-top: 20px;
     border: 3px solid darkgreen;
+    transition: border 2s;
 }
 
 #yese {

@@ -54,6 +54,7 @@ class Game {
         this.matchedCards = [];
         this.busy = true;
         this.coin.flipBtn.style.display = "none";
+        document.getElementById("header").style.background = "radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(1,2,8,1) 100%)";
 
         setTimeout(() => {
             this.audioController.startMusic();
@@ -61,6 +62,8 @@ class Game {
             this.busy = false;
         }, 500);
         this.hideCards();
+        document.getElementById("first_player").style.border = "5px solid darkgreen";
+        document.getElementById("second_player").style.border = "5px solid darkgreen";
 
     }
 
@@ -130,10 +133,12 @@ class Game {
         if (this.player1Score > this.player2Score) {
             this.coin.txt.innerHTML = document.getElementById("player1").innerHTML + " Won! to start a new game flip the coin again";
             this.coin.txt.style.color = "cyan";
+            document.getElementById("first_player").style.border = "15px solid indigo";
             this.player1Wins++;
             document.getElementById("gamesWon1").innerHTML = "Games Won:" + this.player1Wins;
         } else if (this.player2Score > this.player1Score) {
             this.coin.txt.innerHTML = document.getElementById("player2").innerHTML + " Won! to start a new game flip the coin again";
+            document.getElementById("second_player").style.border = "15px solid indigo";
             this.coin.txt.style.color = "yellow";
             this.player2Wins++;
             document.getElementById("gamesWon2").innerHTML = "Games Won:" + this.player2Wins;
