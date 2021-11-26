@@ -52,8 +52,8 @@ function createBoard(cards)
             backCard.src = 'Images/default.png';
             backCard.classList.add("card-value");
             frontCard.src = 'Images/' + i + '.jpg';
-            frontCard.classList.add("card-value");
-            cardDiv.classList.add("card");
+            frontCard.classList.add('card-value');
+            cardDiv.classList.add('card');
             backDiv.classList.add("card-back");
             backDiv.classList.add("card-face");
             backDiv.appendChild(backCard);
@@ -64,19 +64,6 @@ function createBoard(cards)
             cardDiv.appendChild(frontDiv);
             gameContainer.appendChild(cardDiv);
             console.log(frontCard.src);
-
-            // // create the card class
-            // const card = document.createElement('div');
-            // card.classList.add('card'); // Assign className to new element
-            // card.classList.add(`tile_${i}`); // set identifier for card
-
-            // // the clickSelector
-            // card.setAttribute('onclick', `flipTile(this, ${cards[i]})`);
-
-            // // append card to Li, and then that to the board
-            // cardLi.appendChild(card);
-            // board.appendChild(cardLi);
-
         }
     }
 }

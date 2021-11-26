@@ -152,7 +152,7 @@ class Game {
     }
 
     getCardType(card) {
-        return card.getElementsByClassName('card-value')[0].src;
+        return card.getElementsByClassName('card-value')[1].src;
     }
 
     shuffleCards() {
@@ -168,6 +168,15 @@ class Game {
     }
 
 
+}
+
+function getDetails() {
+    document.getElementById("player1").innerHTML = players.player1.name;
+    document.getElementById("player2").innerHTML = players.player2.name;
+    document.getElementById("score1").innerHTML = "Score:" + players.player1.score;
+    document.getElementById("score2").innerHTML = "Score:" + players.player2.score;
+    document.getElementById("gamesWon1").innerHTML = "Games Won:" + players.player1.gamesWon;
+    document.getElementById("gamesWon2").innerHTML = "Games Won:" + players.player2.gamesWon;
 }
 
 // Load Details
@@ -190,14 +199,5 @@ const players = {
 }
 players.player1.name = player1;
 players.player2.name = player2;
-
-function getDetails() {
-    document.getElementById("player1").innerHTML = players.player1.name;
-    document.getElementById("player2").innerHTML = players.player2.name;
-    document.getElementById("score1").innerHTML = "Score:" + players.player1.score;
-    document.getElementById("score2").innerHTML = "Score:" + players.player2.score;
-    document.getElementById("gamesWon1").innerHTML = "Games Won:" + players.player1.gamesWon;
-    document.getElementById("gamesWon2").innerHTML = "Games Won:" + players.player2.gamesWon;
-}
 
 window.onload = getDetails();
