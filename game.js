@@ -60,12 +60,14 @@ class Game {
             this.busy = false;
         }, 500);
         this.hideCards();
+
     }
 
     hideCards() {
         this.cardsArray.forEach(card => {
             card.classList.remove('visible');
             card.classList.remove('matched');
+            card.style.border = "none";
         });
     }
     flipCard(card) {
@@ -94,22 +96,29 @@ class Game {
         this.matchedCards.push(card2);
         card1.classList.add('matched');
         card2.classList.add('matched');
-        this.audioController.match();
-        if (this.firstPlayer) {
-            this.player1Score++;
-            document.getElementById("score1").innerHTML = "Score:" + this.player1Score;
-            if (this.matchedCards.length === this.cardsArray.length) {
-                this.audioController.victory();
-                this.winner();
+        setTimeout(ev => {
+            this.audioController.match();
+            if (this.firstPlayer) {
+                card1.style.border = "5px solid cyan";
+                card2.style.border = "5px solid cyan";
+                this.player1Score++;
+                document.getElementById("score1").innerHTML = "Score:" + this.player1Score;
+                if (this.matchedCards.length === this.cardsArray.length) {
+                    this.audioController.victory();
+                    this.winner();
+                }
+            } else {
+                card1.style.border = "5px solid yellow";
+                card2.style.border = "5px solid yellow";
+                this.player2Score++;
+                document.getElementById("score2").innerHTML = "Score:" + this.player2Score;
+                if (this.matchedCards.length === this.cardsArray.length) {
+                    this.audioController.victory();
+                    this.winner();
+                }
             }
-        } else {
-            this.player2Score++;
-            document.getElementById("score2").innerHTML = "Score:" + this.player2Score;
-            if (this.matchedCards.length === this.cardsArray.length) {
-                this.audioController.victory();
-                this.winner();
-            }
-        }
+        }, 400);
+
     }
 
     winner() {
