@@ -169,3 +169,35 @@ class Game {
 
 
 }
+
+// Load Details
+var url_string = window.location.href;
+var url = new URL(url_string);
+var player1 = url.searchParams.get("player1");
+var player2 = url.searchParams.get("player2");
+const players = {
+    player1: {
+        name: player1,
+        score: 0,
+        gamesWon: 0
+    },
+    player2: {
+        name: player2,
+        score: 0,
+        gamesWon: 0
+    },
+
+}
+players.player1.name = player1;
+players.player2.name = player2;
+
+function getDetails() {
+    document.getElementById("player1").innerHTML = players.player1.name;
+    document.getElementById("player2").innerHTML = players.player2.name;
+    document.getElementById("score1").innerHTML = "Score:" + players.player1.score;
+    document.getElementById("score2").innerHTML = "Score:" + players.player2.score;
+    document.getElementById("gamesWon1").innerHTML = "Games Won:" + players.player1.gamesWon;
+    document.getElementById("gamesWon2").innerHTML = "Games Won:" + players.player2.gamesWon;
+}
+
+window.onload = getDetails();
