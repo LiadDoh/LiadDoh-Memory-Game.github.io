@@ -71,6 +71,7 @@ class Game {
         this.cardsArray.forEach(card => {
             card.classList.remove('visible');
             card.classList.remove('visible2');
+            card.classList.remove('visible3');
             card.classList.remove('matched');
             card.style.border = "none";
         });
@@ -78,10 +79,13 @@ class Game {
     flipCard(card) {
         if (this.canFlipCard(card)) {
             this.audioController.flip();
-            if (Math.floor(Math.random() * 2) === 0)
+            let rand = Math.floor(Math.random() * 3);
+            if (rand === 0)
                 card.classList.add('visible');
-            else
+            else if (rand === 1)
                 card.classList.add('visible2');
+            else
+                card.classList.add('visible3');
 
             if (this.cardToCheck) {
                 this.checkForCardMatch(card);
@@ -157,6 +161,8 @@ class Game {
             card2.classList.remove('visible');
             card1.classList.remove('visible2');
             card2.classList.remove('visible2');
+            card1.classList.remove('visible3');
+            card2.classList.remove('visible3');
             this.busy = false;
             this.firstPlayer = !this.firstPlayer;
             if (this.firstPlayer) {

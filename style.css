@@ -227,6 +227,16 @@ h2 {
     transform: rotateX(0);
 }
 
+.card.visible3 .card-back {
+    transform: scaleY(0) scaleX(0);
+    transition: transform 300ms ease-in-out;
+}
+
+.card.visible3 .card-front {
+    transform: scaleY(1) scaleX(1);
+    transition: transform 600 ease-in-out;
+}
+
 .card.matched .card-value {
     animation: dance 1s linear infinite 500ms;
 }
@@ -270,12 +280,12 @@ h2 {
 }
 
 .card-value {
-    transition: transform 100ms ease-in-out;
+    transition: transform 300ms ease-in-out;
     transform: scale(.9);
 }
 
 .card-front:hover .card-value {
-    transform: scale(1);
+    transform: scale(1.2);
 }
 
 .default {
