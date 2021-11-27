@@ -13,9 +13,18 @@ html {
     cursor: url('cursor/Ghost.cur'), auto;
 }
 
-.game-container {
+.game-container-4 {
     display: grid;
     grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
+    margin: 50px;
+    justify-content: center;
+    perspective: 500px;
+}
+
+.game-container-5 {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
     grid-gap: 10px;
     margin: 50px;
     justify-content: center;

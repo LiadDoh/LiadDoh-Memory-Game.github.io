@@ -87,11 +87,16 @@ class Game {
             else
                 card.classList.add('visible3');
 
-            if (this.cardToCheck) {
-                this.checkForCardMatch(card);
-            } else {
-                this.cardToCheck = card;
+        }
+        if (this.cardToCheck) {
+            this.checkForCardMatch(card);
+        } else {
+            if (this.getCardType(card) == "12.jpg") {
+                this.cardMatch(card, card)
+                this.cardToCheck = null;
+                return;
             }
+            this.cardToCheck = card;
         }
     }
     checkForCardMatch(card) {
@@ -176,7 +181,7 @@ class Game {
     }
 
     getCardType(card) {
-        return card.getElementsByClassName('card-value')[1].src;
+        return card.getElementsByClassName('card-value')[1].src.split('/')[4];
     }
 
     shuffleCards() {

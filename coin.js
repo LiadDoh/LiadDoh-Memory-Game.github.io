@@ -42,40 +42,59 @@ class Coin {
     }
 }
 
-function createBoard(cards) {
+function createCard(gameContainer,i) {
+    const cardDiv = document.createElement('div');
+    const backDiv = document.createElement('div');
+    const frontDiv = document.createElement('div');
+    const frontCard = document.createElement('img');
+    const backCard = document.createElement('img');
+    backCard.classList.add("default");
+    backCard.src = 'Images/default.png';
+    backCard.classList.add("card-value");
+    frontCard.src = 'Images/' + i + '.jpg';
+    frontCard.classList.add('card-value');
+    cardDiv.classList.add('card');
+    backDiv.classList.add("card-back");
+    backDiv.classList.add("card-face");
+    backDiv.appendChild(backCard);
+    frontDiv.classList.add("card-front");
+    frontDiv.classList.add("card-face");
+    frontDiv.appendChild(frontCard);
+    cardDiv.appendChild(backDiv);
+    cardDiv.appendChild(frontDiv);
+    gameContainer.appendChild(cardDiv);
+}
+
+function createBoard(cards,boardsize) {
     let gameContainer = document.getElementById("yese").getElementsByClassName('game-container')[0];
 
     for (let i = 0; i < cards.length; i++) {
-        for (let j = 0; j < 2; j++) {
-            const cardDiv = document.createElement('div');
-            const backDiv = document.createElement('div');
-            const frontDiv = document.createElement('div');
-            const frontCard = document.createElement('img');
-            const backCard = document.createElement('img');
-            backCard.classList.add("default");
-            backCard.src = 'Images/default.png';
-            backCard.classList.add("card-value");
-            frontCard.src = 'Images/' + i + '.jpg';
-            frontCard.classList.add('card-value');
-            cardDiv.classList.add('card');
-            backDiv.classList.add("card-back");
-            backDiv.classList.add("card-face");
-            backDiv.appendChild(backCard);
-            frontDiv.classList.add("card-front");
-            frontDiv.classList.add("card-face");
-            frontDiv.appendChild(frontCard);
-            cardDiv.appendChild(backDiv);
-            cardDiv.appendChild(frontDiv);
-            gameContainer.appendChild(cardDiv);
-            console.log(frontCard.src);
-        }
+        if (i == cards.length -1 && boardsize == 5) 
+            createCard(gameContainer,i);
+        else
+            for (let j = 0; j < 2; j++) {
+                createCard(gameContainer,i);
+            }
     }
 }
 
-function ready() {
+function ready(boardsize) {
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var boardsize = url.searchParams.get("game_board_size");
+    let cardsArray = [];
     let coin = new Coin();
-    cardsArray = [0, 1, 2, 3, 4, 5, 6, 7];
-    createBoard(cardsArray);
+    let gameContainer = document.getElementById("yese").getElementsByClassName('game-container')[0];
+    if (boardsize == 4){
+        cardsArray = [0, 1, 2, 3, 4, 5, 6, 7];
+        gameContainer.classList.add("game-container-4");
+    }
+    else if(boardsize == 5)
+    {
+        cardsArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        gameContainer.classList.add("game-container-5");
+    }
+    createBoard(cardsArray,boardsize);
     let cards = Array.from(document.getElementsByClassName('card'));
     let game = new Game(cards);
     coin.flipBtn.addEventListener("click", () => {
@@ -83,8 +102,9 @@ function ready() {
     }, 3000);
 }
 
+
 if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready());
+    document.addEventListener('DOMContentLoaded', ready(boardsize));
 } else {
     ready();
 }
