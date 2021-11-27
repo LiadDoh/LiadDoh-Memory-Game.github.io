@@ -11,12 +11,12 @@
 
 
 </head>
-<h1>Memory Game</h1>
+<h1 id="gameTitle">Memory Game</h1>
 
 <body>
     <div class="container">
         <div class="center">
-            <form id="game_form" method="get" onsubmit="checkForm(); return false;">
+            <form id="game_form" method="get" onsubmit="checkForm(this); return false;" action="game.html">
                 <fieldset>
                     <br />
                     <div id="player_name">
@@ -29,10 +29,10 @@
                     </div>
                     <br> <br>
                     <div id="radio_buttons">
-                        <p>Choose your game board size:</p>
-                        <input type="radio" id="html" name="game_board_size" value="4" checked>   <label for="4x4">4 x
+                        <p>Choose your memory game board size:</p>
+                        <input type="radio" id="small_board" name="game_board_size" value="4" checked>   <label id="radio_choice" for="small_board">4 x
                             4</label><br>
-                        <input type="radio" id="css" name="game_board_size" value="5">   <label for="5x5">5 x
+                        <input type="radio" id="large_board" name="game_board_size" value="5">   <label id="radio_choice" for="large_board">5 x
                             5</label><br><br>
 
                     </div>

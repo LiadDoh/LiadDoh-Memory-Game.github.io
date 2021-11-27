@@ -165,7 +165,6 @@ class Game {
             } else {
                 this.coin.txt.innerHTML = document.getElementById("player2").innerHTML + "'s turn";
                 this.coin.txt.style.color = "yellow";
-                this.coin.h1.right = "0";
             }
         }, 1000);
     }
@@ -190,12 +189,12 @@ class Game {
 }
 
 function getDetails() {
-    document.getElementById("player1").innerHTML = players.player1.name;
-    document.getElementById("player2").innerHTML = players.player2.name;
-    document.getElementById("score1").innerHTML = "Score:" + players.player1.score;
-    document.getElementById("score2").innerHTML = "Score:" + players.player2.score;
-    document.getElementById("gamesWon1").innerHTML = "Games Won:" + players.player1.gamesWon;
-    document.getElementById("gamesWon2").innerHTML = "Games Won:" + players.player2.gamesWon;
+    document.getElementById("player1").innerHTML = gameData.player1.name;
+    document.getElementById("player2").innerHTML = gameData.player2.name;
+    document.getElementById("score1").innerHTML = "Score:" + gameData.player1.score;
+    document.getElementById("score2").innerHTML = "Score:" + gameData.player2.score;
+    document.getElementById("gamesWon1").innerHTML = "Games Won:" + gameData.player1.gamesWon;
+    document.getElementById("gamesWon2").innerHTML = "Games Won:" + gameData.player2.gamesWon;
 }
 
 // Load Details
@@ -203,7 +202,9 @@ var url_string = window.location.href;
 var url = new URL(url_string);
 var player1 = url.searchParams.get("player1");
 var player2 = url.searchParams.get("player2");
-const players = {
+var boardsize = url.searchParams.get("game_board_size");
+console.log(boardsize);
+const gameData = {
     player1: {
         name: player1,
         score: 0,
@@ -214,9 +215,10 @@ const players = {
         score: 0,
         gamesWon: 0
     },
+    game_board_size: boardsize
 
 }
-players.player1.name = player1;
-players.player2.name = player2;
+gameData.player1.name = player1;
+gameData.player2.name = player2;
 
 window.onload = getDetails();

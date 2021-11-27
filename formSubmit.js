@@ -13,9 +13,10 @@ function checkPlayerNames() {
     });
 }
 
-async function checkForm() {
+async function checkForm(form) {
     await checkPlayerNames().then(() => {
-        window.location.href = "./game.html";
+        form.submit();
+        // window.location.href = "./game.html";
     }).catch(() => {
         alert("Please enter valid names!!\nNames should be atleast 3 characters long, with maximum of 12 characters\nPlayer names also should not be identical");
         console.log("Please enter valid names");
