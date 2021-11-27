@@ -7,6 +7,7 @@
     <!-- simple  -->
     <title>Memory Game</title>
     <link rel="stylesheet" href="style.css">
+    <script src="formSubmit.js" async></script>
 
 
 </head>
@@ -15,11 +16,11 @@
 <body>
     <div class="container">
         <div class="center">
-            <form action="game.html" method="get">
+            <form id="game_form" method="get" onsubmit="checkForm(); return false;">
                 <fieldset>
                     <br />
                     <div id="player_name">
-                        <label for="player1">Player 1</label> <input id=player1 name=player1 type="text" placeholder="Player number one" required autofocus />
+                        <label for="player1">Player 1</label> <input id="player1" name=player1 type="text" placeholder="Player number one" required autofocus />
                     </div>
                     <br>
                     <div id="player_name">
@@ -29,7 +30,7 @@
                     <br> <br>
                     <div id="radio_buttons">
                         <p>Choose your game board size:</p>
-                        <input type="radio" id="html" name="game_board_size" value="4">   <label for="4x4">4 x
+                        <input type="radio" id="html" name="game_board_size" value="4" checked>   <label for="4x4">4 x
                             4</label><br>
                         <input type="radio" id="css" name="game_board_size" value="5">   <label for="5x5">5 x
                             5</label><br><br>
