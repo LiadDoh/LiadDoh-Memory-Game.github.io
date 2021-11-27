@@ -4,6 +4,7 @@ class AudioController {
         this.flipSound = new Audio('Audio/flip.wav');
         this.matchSound = new Audio('Audio/match.wav');
         this.victorySound = new Audio('Audio/victory.wav');
+        this.evilSound = new Audio('Audio/evil-laugh.mp3');
         this.bgMusic.volume = 0.3;
         this.bgMusic.loop = true;
     }
@@ -28,6 +29,16 @@ class AudioController {
         this.stopMusic();
         this.victorySound.play();
     }
+
+    evil() {
+        this.stopMusic();
+        this.evilSound.play();
+        setTimeout(() => {
+            this.evilSound.pause();
+            this.bgMusic.play();
+        }, 2000);
+
+    }
 }
 
 class Game {
@@ -40,6 +51,7 @@ class Game {
         this.cardsArray = cards;
         this.audioController = new AudioController();
         this.firstPlayer = 0;
+        this.matchedCards = [];
         this.coin = new Coin();
     }
 
@@ -87,16 +99,16 @@ class Game {
             else
                 card.classList.add('visible3');
 
-        }
-        if (this.cardToCheck) {
-            this.checkForCardMatch(card);
-        } else {
-            if (this.getCardType(card) == "12.jpg") {
-                this.cardMatch(card, card)
-                this.cardToCheck = null;
-                return;
+            if (this.cardToCheck) {
+                this.checkForCardMatch(card);
+            } else {
+                if (this.getCardType(card) == "12.jpg") {
+                    this.cardMatch(card, card)
+                    this.cardToCheck = null;
+                    return;
+                }
+                this.cardToCheck = card;
             }
-            this.cardToCheck = card;
         }
     }
     checkForCardMatch(card) {
@@ -113,6 +125,8 @@ class Game {
         this.matchedCards.push(card2);
         card1.classList.add('matched');
         card2.classList.add('matched');
+        if (this.getCardType(card1) == "2.jpg")
+            this.audioController.evil();
         setTimeout(ev => {
             this.audioController.match();
             if (this.firstPlayer) {
@@ -159,6 +173,7 @@ class Game {
         this.coin.flipBtn.disabled = false;
         this.coin.coinImg.style.opacity = 1;
     }
+
     cardMisMatch(card1, card2) {
         this.busy = true;
         setTimeout(() => {
