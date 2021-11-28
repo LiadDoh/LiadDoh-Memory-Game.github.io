@@ -134,7 +134,7 @@ class Game {
                 card2.style.border = "5px solid cyan";
                 this.player1Score++;
                 document.getElementById("score1").innerHTML = "Score:" + this.player1Score;
-                if (this.matchedCards.length === this.cardsArray.length) {
+                if (this.matchedCards.length >= this.cardsArray.length) {
                     this.audioController.victory();
                     this.winner();
                 }
@@ -143,7 +143,7 @@ class Game {
                 card2.style.border = "5px solid yellow";
                 this.player2Score++;
                 document.getElementById("score2").innerHTML = "Score:" + this.player2Score;
-                if (this.matchedCards.length === this.cardsArray.length) {
+                if (this.matchedCards.length >= this.cardsArray.length) {
                     this.audioController.victory();
                     this.winner();
                 }
