@@ -153,7 +153,6 @@ class Game {
     }
 
     getCardType(card) {
-        console.log(card.getElementsByClassName('card-value')[1].src);
         return card.getElementsByClassName('card-value')[1].src.split('/')[4];
     }
 
