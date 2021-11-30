@@ -1,46 +1,3 @@
-class AudioController {
-    constructor() {
-        this.bgMusic = new Audio('Audio/creepy.mp3');
-        this.flipSound = new Audio('Audio/flip.wav');
-        this.matchSound = new Audio('Audio/match.wav');
-        this.victorySound = new Audio('Audio/victory.wav');
-        this.evilSound = new Audio('Audio/evil-laugh.mp3');
-        this.bgMusic.volume = 0.3;
-        this.bgMusic.loop = true;
-    }
-
-    startMusic() {
-        this.bgMusic.play();
-    }
-    stopMusic() {
-        this.bgMusic.pause();
-        this.bgMusic.currentTime = 0;
-    }
-
-    flip() {
-        this.flipSound.play();
-    }
-
-    match() {
-        this.matchSound.play();
-    }
-
-    victory() {
-        this.stopMusic();
-        this.victorySound.play();
-    }
-
-    evil() {
-        this.stopMusic();
-        this.evilSound.play();
-        setTimeout(() => {
-            this.evilSound.pause();
-            this.bgMusic.play();
-        }, 2000);
-
-    }
-}
-
 class Game {
 
     constructor(cards) {
@@ -210,41 +167,5 @@ class Game {
     canFlipCard(card) {
         return !this.busy && !this.matchedCards.includes(card) && card !== this.cardToCheck;
     }
-
-
 }
 
-function getDetails() {
-    document.getElementById("player1").innerHTML = gameData.player1.name;
-    document.getElementById("player2").innerHTML = gameData.player2.name;
-    document.getElementById("score1").innerHTML = "Score:" + gameData.player1.score;
-    document.getElementById("score2").innerHTML = "Score:" + gameData.player2.score;
-    document.getElementById("gamesWon1").innerHTML = "Games Won:" + gameData.player1.gamesWon;
-    document.getElementById("gamesWon2").innerHTML = "Games Won:" + gameData.player2.gamesWon;
-}
-
-// Load Details
-var url_string = window.location.href;
-var url = new URL(url_string);
-var player1 = url.searchParams.get("player1");
-var player2 = url.searchParams.get("player2");
-var boardsize = url.searchParams.get("game_board_size");
-console.log(boardsize);
-const gameData = {
-    player1: {
-        name: player1,
-        score: 0,
-        gamesWon: 0
-    },
-    player2: {
-        name: player2,
-        score: 0,
-        gamesWon: 0
-    },
-    game_board_size: boardsize
-
-}
-gameData.player1.name = player1;
-gameData.player2.name = player2;
-
-window.onload = getDetails();
